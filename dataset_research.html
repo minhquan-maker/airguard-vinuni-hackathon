@@ -472,9 +472,10 @@
     <li><a href="#section-3">Công thức</a></li>
     <li><a href="#section-4">So sánh quốc tế</a></li>
     <li><a href="#section-5">Dataset khuyến nghị</a></li>
-    <li><a href="#section-6">Áp dụng HCM/VN</a></li>
-    <li><a href="#section-7">App AirGuard</a></li>
-    <li><a href="#section-8">Stakeholders</a></li>
+    <li><a href="#section-6">Carbon Equivalents</a></li>
+    <li><a href="#section-7">Áp dụng HCM/VN</a></li>
+    <li><a href="#section-8">App AirGuard</a></li>
+    <li><a href="#section-9">Stakeholders</a></li>
     <li><a href="#references">Tài liệu tham khảo</a></li>
     <li><a href="#appendix">Phụ lục</a></li>
   </ul>
@@ -491,9 +492,10 @@
       <li><a href="#section-3">Công thức tính toán</a></li>
       <li><a href="#section-4">Bảng so sánh quốc tế</a></li>
       <li><a href="#section-5">Dataset khuyến nghị (MVP)</a></li>
-      <li><a href="#section-6">Áp dụng cho HCM & Việt Nam</a></li>
-      <li><a href="#section-7">Thuyết minh App AirGuard</a></li>
-      <li><a href="#section-8">Phân tích Stakeholders</a></li>
+      <li><a href="#section-6">Carbon Equivalents</a></li>
+      <li><a href="#section-7">Áp dụng cho HCM & Việt Nam</a></li>
+      <li><a href="#section-8">Thuyết minh App AirGuard</a></li>
+      <li><a href="#section-9">Phân tích Stakeholders</a></li>
       <li><a href="#references">Tài liệu tham khảo</a></li>
       <li><a href="#appendix">Phụ lục — DEFRA/ICCT/GHG</a></li>
     </ol>
@@ -1050,9 +1052,268 @@
 </pre>
   </div>
 
-  <!-- SECTION 6: Áp dụng HCM/VN -->
+  <!-- SECTION 6: Carbon Equivalents -->
   <div class="section" id="section-6">
-    <h2><span class="section-number">6</span>Áp dụng cho HCM &amp; Việt Nam</h2>
+    <h2><span class="section-number">6</span>Carbon Equivalents — Dataset quy đổi</h2>
+
+    <h3>6.1 Giới thiệu</h3>
+    <p>Khi người dùng nhìn thấy kết quả <strong>1.2 kg CO2</strong>, con số này thường khó hình dung. AirGuard sử dụng <strong>Carbon Equivalents</strong> — quy đổi lượng khí thải thành những hình ảnh quen thuộc trong đời sống hàng ngày — giúp người dùng dễ dàng hiểu và so sánh tác động carbon của mình.</p>
+    <p>Công thức quy đổi:</p>
+    <div class="formula-box">
+      <div class="formula-label">Equation 3 — Carbon Equivalent Conversion</div>
+      <div class="formula-main">
+        <span class="formula-var">N</span><sub>equiv</sub> =
+        <span class="formula-var">E</span><sub>trip</sub> /
+        <span class="formula-var">EF</span><sub>item</sub>
+      </div>
+      <div class="formula-note">
+        Trong đó: E_trip = kg CO2 từ chuyến đi | EF_item = kg CO2e/sản phẩm
+      </div>
+    </div>
+    <p>Ví dụ: 0.720 kg CO2 / 0.110 kg CO2e/trà sữa 250ml = <strong>6.5 ly trà sữa</strong>.</p>
+
+    <h3>6.2 Dataset quy đổi từ FJCU / Taiwan EPA CFP Database</h3>
+    <p>Bộ hệ số quy đổi được chiết xuất từ <strong>Carbon Footprint Calculation Platform của Taiwan EPA</strong> (nền tảng CFP, `碳係數明細-全.pdf` — 1,979 trang), kết hợp dữ liệu từ ITRI và FJCU Carbon Footprint Summer Camp 2024. Tất cả giá trị theo phạm vi <strong>Cradle-to-Grave</strong> trừ trứng (Cradle-to-Gate).</p>
+
+    <h4>Đồ uống (Beverages)</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Sản phẩm</th>
+            <th class="center">Quy cách</th>
+            <th class="center">kg CO2e</th>
+            <th>Nguồn</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center mono">1</td>
+            <td>Trà sữa (Milk tea)</td>
+            <td class="center mono">250ml, Tetra Pak</td>
+            <td class="center mono highlight-cell">0.110</td>
+            <td>Taiwan EPA CFP (Page 507)</td>
+            <td>Base reference cho app. Tương đương 1 ly trà sữa thường</td>
+          </tr>
+          <tr>
+            <td class="center mono">2</td>
+            <td>Trà sữa (Milk tea)</td>
+            <td class="center mono">300ml, Tetra Pak</td>
+            <td class="center mono">0.130</td>
+            <td>Taiwan EPA CFP (Page 509)</td>
+            <td>Size lớn hơn → emission cao hơn 18%</td>
+          </tr>
+          <tr>
+            <td class="center mono">3</td>
+            <td>Trà sữa (Milk tea)</td>
+            <td class="center mono">375ml, Tetra Pak</td>
+            <td class="center mono">0.160</td>
+            <td>Taiwan EPA CFP (Page 511)</td>
+            <td>Size XL, phổ biến tại VN</td>
+          </tr>
+          <tr>
+            <td class="center mono">4</td>
+            <td>Trà đen (Black tea)</td>
+            <td class="center mono">250ml, Tetra Pak</td>
+            <td class="center mono">0.095</td>
+            <td>Taiwan EPA CFP (Page 513)</td>
+            <td>Không sữa → thấp hơn trà sữa 14%</td>
+          </tr>
+          <tr>
+            <td class="center mono">5</td>
+            <td>Trà xanh (Green tea)</td>
+            <td class="center mono">250ml, Tetra Pak</td>
+            <td class="center mono">0.090</td>
+            <td>Taiwan EPA CFP (Page 519)</td>
+            <td>Thấp nhất trong các loại trà</td>
+          </tr>
+          <tr>
+            <td class="center mono">6</td>
+            <td>Cà phê đen (Black coffee)</td>
+            <td class="center mono">1 tách (~250ml)</td>
+            <td class="center mono">0.304</td>
+            <td>Taiwan EPA CFP (Page 1788)</td>
+            <td>Carbon cao hơn trà ~3x vì quy trình rang sấy cà phê</td>
+          </tr>
+          <tr>
+            <td class="center mono">7</td>
+            <td>Nước ngọt (Coca-Cola)</td>
+            <td class="center mono">600ml, PET</td>
+            <td class="center mono">0.398</td>
+            <td>Taiwan EPA CFP (Page 1037)</td>
+            <td>Production + packaging PET. Đã có trong slide FJCU (1.29 kg/set)</td>
+          </tr>
+          <tr>
+            <td class="center mono">8</td>
+            <td>Nước đóng chai (Bottled water)</td>
+            <td class="center mono">330ml, PET</td>
+            <td class="center mono">0.150</td>
+            <td>Taiwan EPA CFP (Page 1688)</td>
+            <td>6 lần đắt hơn về carbon so với nước máy</td>
+          </tr>
+          <tr>
+            <td class="center mono">9</td>
+            <td>Bia Đài Loan (Taiwan Beer)</td>
+            <td class="center mono">600ml, chai</td>
+            <td class="center mono">0.330</td>
+            <td>Taiwan EPA CFP (Page 567)</td>
+            <td>Gold medal variant. Bia địa phương thấp hơn Coke</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4>Đồ ăn &amp; sản phẩm tiêu dùng (Food &amp; Consumer goods)</h4>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Sản phẩm</th>
+            <th class="center">Quy cách</th>
+            <th class="center">kg CO2e</th>
+            <th>Nguồn</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center mono">10</td>
+            <td>Trứng gà (Fresh egg)</td>
+            <td class="center mono">1 quả (pcs)</td>
+            <td class="center mono highlight-cell">0.105</td>
+            <td>Taiwan EPA CFP (Page 1168)</td>
+            <td>Thấp — trứng là một trong những protein có carbon thấp nhất</td>
+          </tr>
+          <tr>
+            <td class="center mono">11</td>
+            <td>Bánh pineapple cake (Bánh dứa)</td>
+            <td class="center mono">1 cái (pcs)</td>
+            <td class="center mono">0.194</td>
+            <td>Taiwan EPA CFP (Page 1852)</td>
+            <td>Đặc sản Đài Loan — quy đổi thú vị vì có nguồn gốc nông nghiệp</td>
+          </tr>
+          <tr>
+            <td class="center mono">12</td>
+            <td>Bánh caramel pudding</td>
+            <td class="center mono">1 phần (piece)</td>
+            <td class="center mono">0.340</td>
+            <td>Taiwan EPA CFP (Page 1869)</td>
+            <td>Thường thấy ở cửa hàng tiện lợi Đài Loan</td>
+          </tr>
+          <tr>
+            <td class="center mono">13</td>
+            <td>Khoai lang nướng (Baked sweet potato)</td>
+            <td class="center mono">1 hộp (box)</td>
+            <td class="center mono">0.656</td>
+            <td>Taiwan EPA CFP (Page 1279)</td>
+            <td>Nguồn gốc nông nghiệp — carbon cao hơn trà/đồ uống đóng gói</td>
+          </tr>
+          <tr>
+            <td class="center mono">14</td>
+            <td>Mứt cam Hakka</td>
+            <td class="center mono">500ml, chai</td>
+            <td class="center mono">0.500</td>
+            <td>Taiwan EPA CFP (Page 1145)</td>
+            <td>Sản phẩm chuyển đổi nông sản — minh họa chain chuyển đổi</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>6.3 Carbon equivalents cho thiết bị công nghệ</h3>
+    <p>Các thiết bị điện tử là điểm quy đổi phổ biến nhất trong các ứng dụng carbon tracking. Dữ liệu từ báo cáo môi trường của Apple (Apple Environmental Reports) cho thấy:</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Sản phẩm</th>
+            <th class="center">kg CO2e</th>
+            <th>Nguồn</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>iPhone 15 Pro (production only)</td>
+            <td class="center mono">~66 kg CO2e</td>
+            <td>Apple Environmental Report 2024 <span class="status-new">CẦN XÁC THỰC</span></td>
+            <td>Production chiếm ~80% tổng lifecycle. Placeholder — cần tra cứu chính xác</td>
+          </tr>
+          <tr>
+            <td>MacBook Air 13" (production only)</td>
+            <td class="center mono">~200 kg CO2e</td>
+            <td>Apple Environmental Report 2024 <span class="status-new">CẦN XÁC THỰC</span></td>
+            <td>Placeholder. Laptop có carbon cao hơn phone ~3x</td>
+          </tr>
+          <tr>
+            <td>Sạc iPhone (~20W) — production</td>
+            <td class="center mono">~2 kg CO2e</td>
+            <td>Ecoinvent 3.9 / GHG Protocol <span class="status-new">CẦN XÁC THỰC</span></td>
+            <td>Để quy đổi "X lần sạc iPhone" — cần thêm dữ liệu</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout warning">
+      <div class="callout-title">Data pending verification</div>
+      <p style="font-size:13.5px; margin:0;">Dữ liệu iPhone/MacBook ở trên là <strong>placeholder dựa trên ước tính</strong> từ xu hướng Apple Environmental Reports. Cần được xác thực chính xác trước khi đưa vào production. Nếu bạn có link chính thức từ Apple, vui lòng chia sẻ để cập nhật.</td>
+    </div>
+
+    <h3>6.4 Ví dụ sử dụng trong app</h3>
+    <p>Khi người dùng đi xe máy 10km:</p>
+    <div class="formula-box">
+      <div class="formula-label">Example — Motorbike trip (10 km)</div>
+      <div class="formula-note" style="text-align:left; line-height:2.2; font-size:13px;">
+        E_trip = 10 km × 0.072 kg/km = <strong>0.72 kg CO2</strong><br><br>
+        ÷ Trà sữa 250ml → <strong>6.5 ly</strong> (0.72 / 0.110)<br>
+        ÷ Trứng → <strong>6.9 quả</strong> (0.72 / 0.105)<br>
+        ÷ Nước ngọt 600ml → <strong>1.8 chai</strong> (0.72 / 0.398)<br>
+        ÷ Bánh pineapple cake → <strong>3.7 cái</strong> (0.72 / 0.194)<br>
+        ÷ Cà phê đen → <strong>2.4 tách</strong> (0.72 / 0.304)<br>
+        ÷ Nước đóng chai 330ml → <strong>4.8 chai</strong> (0.72 / 0.150)
+      </div>
+    </div>
+
+    <h3>6.5 Code snippet cho app (TypeScript)</h3>
+<pre style="background:var(--code-bg); color:var(--code-text); border-radius:8px; padding:20px; overflow-x:auto; font-family:'Courier New',monospace; font-size:12.5px; line-height:1.7; margin:12px 0;">
+<span style="color:#7cb899;">// carbonEquivalents.ts — AirGuard MVP</span>
+
+<span style="color:#82aaff;">export const</span> CARBON_EQUIVALENTS = {
+  <span style="color:#a8d8b9;">milkTea_250</span>:  { ef: <span style="color:#ffd700;">0.110</span>, label: <span style="color:#c3e88d;">"Trà sữa 250ml"</span>,  unit: <span style="color:#c3e88d;">"ly"</span>,     source: <span style="color:#c3e88d;">"Taiwan EPA CFP (p.507)"</span> },
+  <span style="color:#a8d8b9;">blackTea_250</span>: { ef: <span style="color:#ffd700;">0.095</span>, label: <span style="color:#c3e88d;">"Trà đen 250ml"</span>, unit: <span style="color:#c3e88d;">"ly"</span>,     source: <span style="color:#c3e88d;">"Taiwan EPA CFP (p.513)"</span> },
+  <span style="color:#a8d8b9;">greenTea_250</span>: { ef: <span style="color:#ffd700;">0.090</span>, label: <span style="color:#c3e88d;">"Trà xanh 250ml"</span>, unit: <span style="color:#c3e88d;">"ly"</span>,     source: <span style="color:#c3e88d;">"Taiwan EPA CFP (p.519)"</span> },
+  <span style="color:#a8d8b9;">coffee</span>:       { ef: <span style="color:#ffd700;">0.304</span>, label: <span style="color:#c3e88d;">"Cà phê đen"</span>,     unit: <span style="color:#c3e88d;">"tách"</span>,   source: <span style="color:#c3e88d;">"Taiwan EPA CFP (p.1788)"</span> },
+  <span style="color:#a8d8b9;">coke_600</span>:     { ef: <span style="color:#ffd700;">0.398</span>, label: <span style="color:#c3e88d;">"Nước ngọt 600ml"</span>, unit: <span style="color:#c3e88d;">"chai"</span>,  source: <span style="color:#c3e88d;">"Taiwan EPA CFP (p.1037)"</span> },
+  <span style="color:#a8d8b9;">water_330</span>:    { ef: <span style="color:#ffd700;">0.150</span>, label: <span style="color:#c3e88d;">"Nước đóng chai 330ml"</span>, unit: <span style="color:#c3e88d;">"chai"</span>, source: <span style="color:#c3e88d;">"Taiwan EPA CFP (p.1688)"</span> },
+  <span style="color:#a8d8b9;">egg</span>:          { ef: <span style="color:#ffd700;">0.105</span>, label: <span style="color:#c3e88d;">"Trứng gà"</span>,        unit: <span style="color:#c3e88d;">"quả"</span>,  source: <span style="color:#c3e88d;">"Taiwan EPA CFP (p.1168)"</span> },
+  <span style="color:#a8d8b9;">pineappleCake</span>:{ ef: <span style="color:#ffd700;">0.194</span>, label: <span style="color:#c3e88d;">"Bánh dứa"</span>,         unit: <span style="color:#c3e88d;">"cái"</span>,  source: <span style="color:#c3e88d;">"Taiwan EPA CFP (p.1852)"</span> },
+} <span style="color:#7cb899;">as const</span>
+
+<span style="color:#82aaff;">export type</span> EquivalentType = keyof typeof CARBON_EQUIVALENTS
+
+<span style="color:#82aaff;">export function</span> <span style="color:#82aaff;">toEquivalents</span>(co2Kg: number, item: EquivalentType): string {
+  <span style="color:#82aaff;">const</span> count = Math.round(co2Kg / CARBON_EQUIVALENTS[item].ef)
+  <span style="color:#82aaff;">const</span> { label, unit } = CARBON_EQUIVALENTS[item]
+  <span style="color:#82aaff;">return</span> <span style="color:#c3e88d;">`</span><span style="color:#ffd700;">${count}</span> <span style="color:#c3e88d;">${unit} ${label}`</span><span style="color:#c3e88d;">`</span>
+}
+</pre>
+
+    <h3>6.6 Kế hoạch mở rộng</h3>
+    <ul>
+      <li><strong>Xác thực iPhone/MacBook:</strong> Tra cứu chính xác Apple Environmental Reports 2024 cho iPhone 15 series và MacBook Air M3. Priority: cao — là equivalent phổ biến nhất.</li>
+      <li><strong>Tree equivalent:</strong> Tìm hệ số carbon hấp thụ của cây xanh tại VN (theo IPCC, 1 cây bạch đàn hấp thụ ~21.7 kg CO2/năm). Cho phép quy đổi: X km xe máy = trồng Y cây.</li>
+      <li><strong>Thêm sản phẩm VN:</strong> Bổ sung dữ liệu từ các nhãn hàng Việt Nam (Vinamilk, TH True Milk, Masan) nếu có CFP certified.</li>
+      <li><strong>Interactive display:</strong> V2 hiển thị 3-4 equivalents cùng lúc, người dùng chọn loại quy đổi ưa thích.</li>
+    </ul>
+  </div>
+
+  <!-- SECTION 7: Áp dụng HCM/VN -->
+  <div class="section" id="section-7">
+    <h2><span class="section-number">7</span>Áp dụng cho HCM &amp; Việt Nam</h2>
 
     <h3>Đặc điểm giao thông HCM</h3>
     <div class="table-wrap">
@@ -1144,8 +1405,8 @@
   </div>
 
   <!-- SECTION 7: App Description -->
-  <div class="section" id="section-7">
-    <h2><span class="section-number">7</span>Thuyết minh ứng dụng AirGuard</h2>
+  <div class="section" id="section-8">
+    <h2><span class="section-number">8</span>Thuyết minh ứng dụng AirGuard</h2>
 
     <h3>7.1 Tổng quan ý tưởng</h3>
     <p><strong>AirGuard</strong> là một ứng dụng di động tối giản nhưng mạnh mẽ, được thiết kế để cá nhân hóa việc theo dõi dấu chân carbon từ hoạt động giao thông đô thị ngay trên thiết bị của người dùng. Với triết lý <strong>"Invisible Technology, Visible Impact"</strong>, AirGuard cho phép người dùng đo lường chính xác lượng khí thải CO2 phát sinh theo thời gian thực chỉ qua ba thao tác chạm: <em>Bắt đầu chuyến đi</em>, <em>chọn phương tiện</em> và <em>Kết thúc</em>.</p>
@@ -1335,8 +1596,8 @@
   </div>
 
   <!-- SECTION 8: Stakeholder Analysis -->
-  <div class="section" id="section-8">
-    <h2><span class="section-number">8</span>Phân tích Stakeholders</h2>
+  <div class="section" id="section-9">
+    <h2><span class="section-number">9</span>Phân tích Stakeholders</h2>
 
     <h3>8.1 Bảng tổng hợp các bên liên quan</h3>
     <div class="table-wrap">
@@ -1556,7 +1817,7 @@
 
   <!-- REFERENCES -->
   <div class="section" id="references">
-    <h2><span class="section-number">9</span>Tài liệu tham khảo (APA 7th)</h2>
+    <h2><span class="section-number">10</span>Tài liệu tham khảo (APA 7th)</h2>
     <ol class="ref-list">
       <li>
         <span class="ref-num">1</span>
@@ -1635,7 +1896,7 @@
 
   <!-- APPENDIX -->
   <div class="section" id="appendix">
-    <h2><span class="section-number">10</span>Phụ lục — Quick Reference Cards</h2>
+    <h2><span class="section-number">11</span>Phụ lục — Quick Reference Cards</h2>
 
     <div class="appendix-section">
       <h4>DEFRA 2025 — Key Values (Primary Source)</h4>
