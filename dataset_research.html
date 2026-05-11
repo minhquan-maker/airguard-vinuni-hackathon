@@ -473,6 +473,8 @@
     <li><a href="#section-4">So sánh quốc tế</a></li>
     <li><a href="#section-5">Dataset khuyến nghị</a></li>
     <li><a href="#section-6">Áp dụng HCM/VN</a></li>
+    <li><a href="#section-7">App AirGuard</a></li>
+    <li><a href="#section-8">Stakeholders</a></li>
     <li><a href="#references">Tài liệu tham khảo</a></li>
     <li><a href="#appendix">Phụ lục</a></li>
   </ul>
@@ -490,6 +492,8 @@
       <li><a href="#section-4">Bảng so sánh quốc tế</a></li>
       <li><a href="#section-5">Dataset khuyến nghị (MVP)</a></li>
       <li><a href="#section-6">Áp dụng cho HCM & Việt Nam</a></li>
+      <li><a href="#section-7">Thuyết minh App AirGuard</a></li>
+      <li><a href="#section-8">Phân tích Stakeholders</a></li>
       <li><a href="#references">Tài liệu tham khảo</a></li>
       <li><a href="#appendix">Phụ lục — DEFRA/ICCT/GHG</a></li>
     </ol>
@@ -1139,9 +1143,420 @@
     </ul>
   </div>
 
+  <!-- SECTION 7: App Description -->
+  <div class="section" id="section-7">
+    <h2><span class="section-number">7</span>Thuyết minh ứng dụng AirGuard</h2>
+
+    <h3>7.1 Tổng quan ý tưởng</h3>
+    <p><strong>AirGuard</strong> là một ứng dụng di động tối giản nhưng mạnh mẽ, được thiết kế để cá nhân hóa việc theo dõi dấu chân carbon từ hoạt động giao thông đô thị ngay trên thiết bị của người dùng. Với triết lý <strong>"Invisible Technology, Visible Impact"</strong>, AirGuard cho phép người dùng đo lường chính xác lượng khí thải CO2 phát sinh theo thời gian thực chỉ qua ba thao tác chạm: <em>Bắt đầu chuyến đi</em>, <em>chọn phương tiện</em> và <em>Kết thúc</em>.</p>
+    <p>Ứng dụng tận dụng dữ liệu GPS để tính toán quãng đường và tích hợp bộ hệ số phát thải chuẩn hóa theo ISO 14067:2018 (từ nền tảng ITRI/FJCU), giúp tính toán trực tiếp kết quả ngay tại local mà không cần đến hệ thống backend hay kết nối API phức tạp. Để biến những con số khô khan thành thông điệp dễ hiểu, AirGuard quy đổi lượng khí thải ra những hình ảnh so sánh trực quan, chẳng hạn như "tương đương với số lần sạc iPhone", giúp người dùng nhận thức rõ ràng tác động của mình tới môi trường.</p>
+
+    <div class="callout">
+      <div class="callout-title">Điểm khác biệt cốt lõi</div>
+      <p style="font-size:13.5px; margin:0;">Vì mọi tính toán đều diễn ra local trên máy, AirGuard đảm bảo <strong>quyền riêng tư tuyệt đối</strong> về lộ trình di chuyển của người dùng — một điểm cộng lớn so với các ứng dụng tracking hiện nay. Không có dữ liệu GPS nào được gửi lên server, không có backend, không có API bên thứ ba.</p>
+    </div>
+
+    <h3>7.2 Kiến trúc kỹ thuật</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Thành phần</th>
+            <th>Mô tả</th>
+            <th>Công nghệ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Computation</td>
+            <td>Tất cả tính toán CO2 chạy local trên thiết bị</td>
+            <td>Expo / React Native</td>
+          </tr>
+          <tr>
+            <td>Emission Factors</td>
+            <td>Hardcode trực tiếp vào app (DEFRA 2025 / ITRI)</td>
+            <td>TypeScript constants</td>
+          </tr>
+          <tr>
+            <td>GPS / Location</td>
+            <td>Thu thập quãng đường di chuyển (MVP: manual distance input)</td>
+            <td>expo-location (V2)</td>
+          </tr>
+          <tr>
+            <td>Local Storage</td>
+            <td>Lưu lịch sử chuyến đi trên thiết bị</td>
+            <td>AsyncStorage / SQLite</td>
+          </tr>
+          <tr>
+            <td>No Backend</td>
+            <td>Không server, không cloud, không third-party API</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Privacy</td>
+            <td>Dữ liệu lộ trình không rời thiết bị người dùng</td>
+            <td>On-device only</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout info">
+      <div class="callout-title">MVP vs. V2 Architecture</div>
+      <p style="font-size:13.5px; margin:0;"><strong>MVP (Hiện tại):</strong> Người dùng nhập quãng đường thủ công. Tính toán: E = d x EF (Equation 1). Dữ liệu lưu local. Không cần kết nối internet.<br><br><strong>V2 (Tương lai):</strong> Tích hợp Google Maps Distance Matrix API để lấy quãng đường tự động + tính idle-time (kẹt xe). Tích hợp Firebase để đồng bộ across devices.</p>
+    </div>
+
+    <h3>7.3 Tính năng nổi bật</h3>
+    <div class="comparison-grid">
+      <div class="compare-card">
+        <div class="source-name">3-Tap Trip Logging</div>
+        <p style="font-size:13px; color:var(--text-secondary);">Bắt đầu - Chọn phương tiện - Kết thúc. Giao diện tối giản, không cần đăng ký.</p>
+      </div>
+      <div class="compare-card">
+        <div class="source-name">Carbon Equivalents</div>
+        <p style="font-size:13px; color:var(--text-secondary);">Quy đổi CO2 ra hình ảnh dễ hiểu: số lần sạc iPhone, cây xanh cần thiết, km đi bộ tương đương.</p>
+      </div>
+      <div class="compare-card">
+        <div class="source-name">Daily Budget Tracker</div>
+        <p style="font-size:13px; color:var(--text-secondary);">So sánh tổng CO2 ngày với budget VN (~9.6 kg/ngày). Cảnh báo khi vượt ngưỡng an toàn khí hậu.</p>
+      </div>
+      <div class="compare-card">
+        <div class="source-name">ISO 14067 Compliant</div>
+        <p style="font-size:13px; color:var(--text-secondary);">Hệ số phát thải tuân thủ tiêu chuẩn quốc tế, có nguồn trích dẫn rõ ràng (DEFRA 2025, ITRI/FJCU).</p>
+      </div>
+      <div class="compare-card">
+        <div class="source-name">Green Score</div>
+        <p style="font-size:13px; color:var(--text-secondary);">Chỉ số điểm xanh cá nhân, streak ngày liên tiếp sử dụng phương tiện thấp-carbon.</p>
+      </div>
+      <div class="compare-card">
+        <div class="source-name">Zero-Config Setup</div>
+        <p style="font-size:13px; color:var(--text-secondary);">Không cần tạo tài khoản, không cần internet, không quảng cáo. Mở app là dùng được ngay.</p>
+      </div>
+    </div>
+
+    <h3>7.4 Luồng người dùng (User Flow)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Bước</th>
+            <th>Hành động</th>
+            <th>Hệ thống xử lý</th>
+            <th>Kết quả</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center" style="font-weight:700;">1</td>
+            <td>Người dùng nhấn <strong>Bắt đầu chuyến đi</strong></td>
+            <td>App khởi tạo session, ghi timestamp bắt đầu</td>
+            <td>Trip active</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700;">2</td>
+            <td>Người dùng <strong>chọn phương tiện</strong> (danh sách 13 loại)</td>
+            <td>Hệ thống load EF tương ứng từ local constants</td>
+            <td>EF loaded</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700;">3</td>
+            <td>Người dùng nhập <strong>quãng đường</strong> (km) hoặc GPS tracking (V2)</td>
+            <td>Tính E = d x EF_pax (Equation 1, Section 3)</td>
+            <td>CO2 calculated</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700;">4</td>
+            <td>Người dùng nhấn <strong>Kết thúc</strong></td>
+            <td>App hiển thị kết quả + carbon equivalents + cập nhật budget</td>
+            <td>Result displayed</td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700;">5</td>
+            <td>App lưu chuyến đi vào <strong>local storage</strong></td>
+            <td>Trip saved: timestamp, vehicle, distance, CO2, budget remaining</td>
+            <td>Trip logged</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>7.5 Privacy-by-Design</h3>
+    <p>Trong bối cảnh các ứng dụng giao thông hiện nay thu thập và bán dữ liệu vị trí cho bên thứ ba, AirGuard chọn hướng đi ngược lại:</p>
+    <ul>
+      <li><strong>Không backend:</strong> Mọi computation diễn ra trên thiết bị. Không có server để hack, không có database để breach.</li>
+      <li><strong>Không tracking:</strong> Không có SDK analytics, không có crash reporting gửi data ra ngoài.</li>
+      <li><strong>Không quyền truy cập mạng:</strong> MVP không cần internet — người dùng có thể tắt WiFi/data và vẫn dùng được bình thường.</li>
+      <li><strong>Dữ liệu do người dùng sở hữu:</strong> Lịch sử chuyến đi chỉ tồn tại trên thiết bị của họ. Họ có thể xóa bất cứ lúc nào.</li>
+    </ul>
+    <div class="callout warning">
+      <div class="callout-title">Thông điệp cho Ban giám khảo</div>
+      <p style="font-size:13.5px; margin:0;">Điểm mạnh cạnh tranh của AirGuard so với các ứng dụng carbon tracking hiện có (Carbon Footprint, Capture, Klima...) là <strong>Privacy-by-Design</strong>. Các ứng dụng này yêu cầu tạo tài khoản, kết nối cloud, và thu thập dữ liệu hành vi. AirGuard thì hoàn toàn ngược lại — lộ trình di chuyển là thông tin nhạy cảm, và chúng tôi không bao giờ đụng vào nó.</p>
+    </div>
+
+    <h3>7.6 Lộ trình phát triển (Roadmap)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Giai đoạn</th>
+            <th>Tính năng</th>
+            <th>Trạng thái</th>
+            <th>Ghi chú</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>MVP</strong></td>
+            <td>Manual trip logging, 13 vehicle types, local EF, CO2 calculation, daily budget, carbon equivalents</td>
+            <td><span class="status-new">MỚI</span></td>
+            <td>Không backend, không internet</td>
+          </tr>
+          <tr>
+            <td><strong>V2</strong></td>
+            <td>Google Maps Distance Matrix API, auto distance, idle-time calculation (Equation 2), Firebase sync</td>
+            <td>Lên kế hoạch</td>
+            <td>Cần API key, tăng accuracy</td>
+          </tr>
+          <tr>
+            <td><strong>V3</strong></td>
+            <td>Well-to-Wheel (WTW) calculation, domestic flight emission, light commercial vehicle (LCV), dark mode</td>
+            <td>Lên kế hoạch</td>
+            <td>Mở rộng phạm vi phương tiện</td>
+          </tr>
+          <tr>
+            <td><strong>V4</strong></td>
+            <td>Aggregated anonymized city-level data, dashboard cho chính quyền HCM, API for researchers</td>
+            <td>Nghiên cứu</td>
+            <td>Privacy-preserving aggregation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SECTION 8: Stakeholder Analysis -->
+  <div class="section" id="section-8">
+    <h2><span class="section-number">8</span>Phân tích Stakeholders</h2>
+
+    <h3>8.1 Bảng tổng hợp các bên liên quan</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Nhóm</th>
+            <th>Vai trò</th>
+            <th>Mối quan tâm chính</th>
+            <th>Giá trị AirGuard mang lại</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Người dùng cuối</strong><br><span style="font-size:12px; color:var(--text-secondary);">Primary</span></td>
+            <td>Người sử dụng ứng dụng để tracking CO2 cá nhân</td>
+            <td>Dễ dùng, bảo mật, hiểu được tác động carbon, tiết kiệm chi phí xăng</td>
+            <td>Công cụ đo lường chính xác, budget tracker, green score</td>
+          </tr>
+          <tr>
+            <td><strong>Cơ quan chính quyền</strong><br><span style="font-size:12px; color:var(--text-secondary);">Secondary</span></td>
+            <td>Người ra chính sách, quản lý giao thông và môi trường</td>
+            <td>Dữ liệu hành vi di chuyển, giảm phát thải GTVT, Net Zero 2050</td>
+            <td>Tham khảo hành vi người dùng (aggregated, anonymized), bằng chứng cho policy</td>
+          </tr>
+          <tr>
+            <td><strong>Ban giám khảo Hackathon</strong><br><span style="font-size:12px; color:var(--text-secondary);">Tertiary</span></td>
+            <td>Đánh giá tính khả thi, sáng tạo, tác động của giải pháp</td>
+            <td>Innovation, Feasibility, Scalability, Real-world Impact</td>
+            <td>Prototype hoàn chỉnh, scientific foundation, clear problem-solution fit</td>
+          </tr>
+          <tr>
+            <td><strong>Doanh nghiệp GTVT xanh</strong><br><span style="font-size:12px; color:var(--text-secondary);">Supporting</span></td>
+            <td>VinFast, Grab, các tuyến Metro HCM, đơn vị vận tải công cộng</td>
+            <td>Khuyến khích người dùng chọn phương tiện xanh, brand positioning</td>
+            <td>Nền tảng khuyến khích (in-app badges cho VinFast, Metro)</td>
+          </tr>
+          <tr>
+            <td><strong>NGO Môi trường</strong><br><span style="font-size:12px; color:var(--text-secondary);">Supporting</span></td>
+            <td>Tổ chức phi chính phủ về khí hậu và môi trường tại VN</td>
+            <td>Nâng cao nhận thức cộng đồng, đo lường tác động</td>
+            <td>Công cụ giáo dục, dashboard theo dõi CO2 cộng đồng</td>
+          </tr>
+          <tr>
+            <td><strong>Cộng đồng học thuật</strong><br><span style="font-size:12px; color:var(--text-secondary);">Supporting</span></td>
+            <td>ITRI, FJCU, các trường đại học VN, nhóm nghiên cứu khí hậu</td>
+            <td>Nguồn dữ liệu sơ cấp, nghiên cứu hành vi giao thông</td>
+            <td>Dataset emission factors được cross-validate, phương pháp luận rõ ràng</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>8.2 Stakeholder Mapping (Power x Interest Matrix)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th class="center">Low Interest (Ít quan tâm)</th>
+            <th class="center">High Interest (Quan tâm cao)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="center" style="font-weight:700; white-space:nowrap;">High Power<br>(Quyền lực cao)</td>
+            <td style="background:#f3f4f6; padding:16px;">
+              <strong>Monitor (Theo dõi)</strong><br>
+              <span style="font-size:12px; color:var(--text-secondary);">App Store / Google Play (duy trì chính sách), Doanh nghiệp công nghệ lớn (Apple/Google Maps API)</span>
+            </td>
+            <td style="background:#d4edda; padding:16px;">
+              <strong>Manage Closely (Quản lý chặt)</strong><br>
+              <span style="font-size:12px; color:var(--text-secondary);">Ban giám khảo, Cơ quan chính quyền HCM (Sở GTVT, Sở TN&MT)</span>
+            </td>
+          </tr>
+          <tr>
+            <td class="center" style="font-weight:700; white-space:nowrap;">Low Power<br>(Quyền lực thấp)</td>
+            <td style="background:#f3f4f6; padding:16px;">
+              <strong>Minimal Effort (Ít nỗ lực)</strong><br>
+              <span style="font-size:12px; color:var(--text-secondary);">Truyền thông đại chúng (TV, báo), Tổ chức quốc tế (UN, World Bank)</span>
+            </td>
+            <td style="background:#fff3cd; padding:16px;">
+              <strong>Keep Informed (Cập nhật thường xuyên)</strong><br>
+              <span style="font-size:12px; color:var(--text-secondary);">Người dùng cuối, NGO môi trường, Doanh nghiệp GTVT xanh, Cộng đồng học thuật (ITRI/FJCU)</span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <div class="callout-title">Chiến lược tiếp cận</div>
+      <ul style="margin:0; font-size:13.5px;">
+        <li><strong>Manage Closely:</strong> Demo trực tiếp, pitch deck cho ban giám khảo; cung cấp aggregate data cho chính quyền khi được yêu cầu.</li>
+        <li><strong>Keep Informed:</strong> Social media, blog series, bài báo khoa học; newsletter cho NGO; academic paper cho ITRI/FJCU.</li>
+        <li><strong>Monitor:</strong> Tuân thủ App Store policies, đáp ứng review guidelines.</li>
+        <li><strong>Minimal Effort:</strong> Press release khi đạt milestones (VD: 10,000 người dùng, giảm X tấn CO2).</li>
+      </ul>
+    </div>
+
+    <h3>8.3 Phân tích chi tiết từng nhóm trọng tâm</h3>
+
+    <h3 style="color:var(--primary); font-size:15px; margin-bottom:6px;">Người dùng cuối — Nhóm Primary</h3>
+    <p><strong>Demographics:</strong> Cư dân TP.HCM và các thành phố lớn VN, độ tuổi 18-45, sử dụng xe máy hoặc ô tô là phương tiện di chuyển chính. Đặc biệt phù hợp với sinh viên đại học, nhân viên văn phòng, và gia đình trẻ có ý thức về môi trường.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Pain Point</th>
+            <th>AirGuard Solution</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Không biết mình phát thải bao nhiêu CO2 mỗi ngày</td>
+            <td>Trip logging với kết quả tức thì (E = d x EF)</td>
+          </tr>
+          <tr>
+            <td>Thấy con số kg CO2 nhưng không hình dung được</td>
+            <td>Carbon equivalents: "tương đương X lần sạc iPhone"</td>
+          </tr>
+          <tr>
+            <td>Lo ngại về quyền riêng tư khi dùng app tracking</td>
+            <td>Privacy-by-design: không backend, không cloud, local-only</td>
+          </tr>
+          <tr>
+            <td>Không biết mình đang dùng nhiều hay ít carbon so với người khác</td>
+            <td>Daily budget tracker + green score + streak system</td>
+          </tr>
+          <tr>
+            <td>Muốn giảm carbon nhưng không biết bắt đầu từ đâu</td>
+            <td>Gợi ý phương tiện thay thế (MRT vs. xe máy vs. đi bộ)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="color:var(--primary); font-size:15px; margin-bottom:6px;">Cơ quan chính quyền — Nhóm Secondary</h3>
+    <p><strong>Các bên liên quan:</strong> Sở Giao thông Vận tải TP.HCM, Sở Tài nguyên và Môi trường TP.HCM, Cục Đăng kiểm Việt Nam, Ủy ban Nhân dân TP.HCM, Bộ Tài nguyên và Môi trường, Đề án Net Zero 2050 của Chính phủ VN.</p>
+    <p><strong>Pain Points:</strong> Thiếu dữ liệu hành vi di chuyển của người dân ở cấp vi mô; khó đánh giá hiệu quả của các chính sách giao thông xanh; cần bằng chứng khoa học cho việc thúc đẩy Metro, xe buýt điện, và hạn chế xe cá nhân.</p>
+    <div class="callout info">
+      <div class="callout-title">Cơ hội hợp tác</div>
+      <p style="font-size:13.5px; margin:0;">AirGuard có tiềm năng cung cấp <strong>dữ liệu ẩn danh tổng hợp</strong> (aggregated, anonymized) cho Sở GTVT và Sở TN&MT TP.HCM — ví dụ: tỷ lệ modal split theo khu vực, CO2 tiết kiệm được khi người dùng chuyển từ xe máy sang Metro. Dữ liệu này hoàn toàn privacy-preserving: không có IP, không có GPS trace, chỉ có số liệu thống kê tổng hợp.</p>
+    </div>
+
+    <h3 style="color:var(--primary); font-size:15px; margin-bottom:6px;">Ban giám khảo Hackathon — Nhóm Tertiary</h3>
+    <p><strong>Tiêu chí đánh giá của Asian Hackathon for Green Future 2026:</strong></p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Tiêu chí</th>
+            <th>AirGuard đáp ứng như thế nào</th>
+            <th>Bằng chứng</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Innovation</strong></td>
+            <td>Privacy-first carbon tracking; local-only computation; carbon equivalents visualization</td>
+            <td>Không app nào tại VN có feature set tương tự với privacy model này</td>
+          </tr>
+          <tr>
+            <td><strong>Feasibility</strong></td>
+            <td>Prototype MVP hoàn chỉnh, chạy được trên Expo (iOS/Android), không phụ thuộc backend</td>
+            <td>dataset_research.html, emissionFactors.ts, AIRGUARD_PROJECT.md</td>
+          </tr>
+          <tr>
+            <td><strong>Scalability</strong></td>
+            <td>Hardcoded EF cho 13+ vehicle types, dễ mở rộng thêm phương tiện (V2: flight, LCV)</td>
+            <td>Roadmap có sẵn từ MVP → V2 → V3 → V4</td>
+          </tr>
+          <tr>
+            <td><strong>Real-world Impact</strong></td>
+            <td>Người dùng thay đổi hành vi khi thấy tác động carbon; phù hợp Net Zero 2050 VN; có tiềm năng policy tool</td>
+            <td>Budget tracker, green score, aggregate data for government</td>
+          </tr>
+          <tr>
+            <td><strong>Scientific Rigor</strong></td>
+            <td>EF từ DEFRA 2025, ITRI/FJCU, ICCT; tuân thủ ISO 14064-1:2018, ISO 14067:2018; 18 tài liệu tham khảo</td>
+            <td>Section 5 (Dataset khuyến nghị), Section 9 (Tài liệu tham khảo)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>8.4 Engagement Strategy</h3>
+    <p>Chiến lược tiếp cận từng nhóm stakeholder qua các giai đoạn phát triển của AirGuard:</p>
+
+    <h3 style="color:var(--primary); font-size:15px;">Giai đoạn MVP (Hackathon — Tháng 5/2026)</h3>
+    <ul>
+      <li><strong>Ban giám khảo:</strong> Demo trực tiếp prototype, trình bày scientific foundation rõ ràng, highlight privacy model.</li>
+      <li><strong>Người dùng cuối:</strong> Beta testing nội bộ nhóm; thu thập feedback về UX và EF accuracy.</li>
+      <li><strong>Cộng đồng học thuật:</strong> Báo cáo nghiên cứu dataset cho ITRI/FJCU để cross-validate emission factors.</li>
+    </ul>
+
+    <h3 style="color:var(--primary); font-size:15px;">Giai đoạn V2 (Post-hackathon — Tháng 6-8/2026)</h3>
+    <ul>
+      <li><strong>Người dùng cuối:</strong> Phát hành trên App Store / Google Play; chiến dịch truyền thông trên mạng xã hội (TikTok, Facebook, Zalo).</li>
+      <li><strong>Doanh nghiệp GTVT xanh:</strong> Liên hệ VinFast, Grab, Metro HCM để tích hợp in-app badges; đề xuất partnership.</li>
+      <li><strong>Chính quyền:</strong> Gửi báo cáo aggregate data (anonymized) cho Sở GTVT và Sở TN&MT TP.HCM.</li>
+      <li><strong>NGO:</strong> Cung cấp dashboard miễn phí cho các tổ chức môi trường.</li>
+    </ul>
+
+    <h3 style="color:var(--primary); font-size:15px;">Giai đoạn Scale-up (V3+ — Tháng 9/2026+)</h3>
+    <ul>
+      <li><strong>Người dùng:</strong> Gamification nâng cao (leaderboard theo khu vực, achievement badges, community challenges).</li>
+      <li><strong>Chính quyền:</strong> API cho phép researchers truy cập aggregate data; policy dashboard cho city planners.</li>
+      <li><strong>Học thuật:</strong> Academic paper về hành vi giao thông tại HCM dựa trên AirGuard data.</li>
+      <li><strong>Doanh nghiệp:</strong> B2B tier: companies có thể track fleet emissions qua dashboard.</li>
+    </ul>
+
+    <div class="callout">
+      <div class="callout-title">Tóm tắt giá trị Stakeholder</div>
+      <p style="font-size:13.5px; margin:0;">AirGuard không chỉ là một app tracking — nó là một <strong>multi-stakeholder platform</strong>: người dùng nhận được transparency về carbon footprint cá nhân; chính quyền nhận được dữ liệu hành vi để xây dựng policy; cộng đồng học thuật nhận được dataset được cross-validate; và toàn xã hội tiến gần hơn tới mục tiêu Net Zero 2050.</p>
+    </div>
+  </div>
+
   <!-- REFERENCES -->
   <div class="section" id="references">
-    <h2><span class="section-number">7</span>Tài liệu tham khảo (APA 7th)</h2>
+    <h2><span class="section-number">9</span>Tài liệu tham khảo (APA 7th)</h2>
     <ol class="ref-list">
       <li>
         <span class="ref-num">1</span>
@@ -1220,7 +1635,7 @@
 
   <!-- APPENDIX -->
   <div class="section" id="appendix">
-    <h2><span class="section-number">8</span>Phụ lục — Quick Reference Cards</h2>
+    <h2><span class="section-number">10</span>Phụ lục — Quick Reference Cards</h2>
 
     <div class="appendix-section">
       <h4>DEFRA 2025 — Key Values (Primary Source)</h4>
