@@ -535,7 +535,7 @@
     </ul>
 
     <h3>Phương pháp nghiên cứu</h3>
-    <p>Nghiên cứu tổng hợp từ 5 nguồn chính:</p>
+    <p>Nghiên cứu tổng hợp từ 5 nguồn chính. <strong>Lưu ý (2026-05-12):</strong> Các giá trị DEFRA 2025 trong tài liệu này đã được xác minh trực tiếp từ file <code>defra_2025_condensed_set.xlsx</code> (tải từ <code>gov.uk</code>) — không phải từ tài liệu thứ cấp. Nhiều giá trị trong bản gốc đã được cập nhật để khớp với dữ liệu thực từ file này.</p>
     <div class="comparison-grid">
       <div class="compare-card">
         <div class="source-name">DEFRA / DfT</div>
@@ -599,28 +599,28 @@
             <td class="center mono">0.050</td>
             <td class="center mono">0.040</td>
             <td>FJCU / ITRI</td>
-            <td class="warning-cell">Thấp bất thường (DEFRA: 0.072)</td>
+            <td class="warning-cell">Thấp bất thường. DEFRA 2025 (flat): <strong>0.1137</strong> avg veh-km. FJCU có thể dùng đơn vị/cabin khác.</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-car"></span>Ô tô (xăng/diesel)</td>
             <td class="center mono">0.115</td>
             <td class="center mono">0.120</td>
             <td>FJCU / ITRI</td>
-            <td>Hợp lý cho fleet avg SEA</td>
+            <td>Thấp. DEFRA 2025 (flat): petrol avg <strong>0.1627</strong>, diesel avg <strong>0.1730</strong> veh-km. FJCU có thể dùng đơn vị/pax-km.</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-bus"></span>Xe buýt</td>
             <td class="center mono">0.094</td>
             <td class="center mono">0.080</td>
             <td>FJCU / ITRI</td>
-            <td class="warning-cell">Có thể per-passenger — cần xác nhận nguồn</td>
+            <td class="warning-cell">Thấp. DEFRA 2025 (flat): local bus <strong>0.1253</strong> pax-km, avg <strong>0.1039</strong> pax-km. Có thể FJCU dùng giá trị cũ.</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-train"></span>MRT / Tàu điện</td>
             <td class="center mono">0.023</td>
             <td class="center mono">0.000</td>
             <td>FJCU / ITRI</td>
-            <td>Phù hợp (DEFRA: 0.006 pax)</td>
+            <td class="warning-cell">DEFRA 2025 (flat): Light rail/tram <strong>0.0286</strong>, National rail <strong>0.0355</strong> pax-km. FJCU 0.023 thấp hơn — có thể phản ánh HCM Metro.</td>
           </tr>
         </tbody>
       </table>
@@ -630,8 +630,8 @@
       <div class="callout-title">Hạn chế của dataset FJCU/ITRI</div>
       <ul style="margin:0; font-size:13.5px;">
         <li><strong>Thiếu xe điện:</strong> Không có hệ số cho xe máy điện, ô tô điện, xe buýt điện — loại phương tiện ngày càng phổ biến tại HCM</li>
-        <li><strong>Xe máy 0.050 thấp bất thường:</strong> DEFRA 2025 là 0.072, ICCT Asia ước tính 0.08–0.11 kg/km. Giá trị FJCU có thể dùng đơn vị khác hoặc đại diện cho fleet nhẹ hơn</li>
-        <li><strong>Xe buýt 0.094 không rõ đơn vị:</strong> Per-vehicle hay per-passenger? Nếu per-passenger thì hợp lý (DEFRA per-pax: 0.089); nếu per-vehicle thì cần điều chỉnh</li>
+        <li><strong>Xe máy 0.050 thấp bất thường:</strong> DEFRA 2025 (verified, xác minh 2026-05-12 từ file): avg <strong>0.1137</strong> veh-km. Giá trị cũ 0.072 trong research này KHÔNG phải từ DEFRA 2025 — ICCT Asia ước tính 0.08–0.11 kg/km. FJCU có thể dùng đơn vị khác hoặc fleet nhẹ hơn.</li>
+        <li><strong>Xe buýt 0.094 không rõ đơn vị:</strong> DEFRA 2025 (verified): Local bus <strong>0.1253</strong> pax-km. Giá trị cũ 0.089 có thể từ FJCU hoặc DEFRA năm cũ. Nếu FJCU 0.094 là per-passenger thì hợp lý nhưng vẫn thấp hơn DEFRA 2025.</li>
         <li><strong>Không có taxi/Grab:</strong> Phương tiện rất phổ biến tại HCM, cần bổ sung</li>
         <li><strong>Không có tàu hoả diesel:</strong> Các tuyến đường sắt khu vực dùng diesel</li>
       </ul>
@@ -748,7 +748,7 @@
         <tbody>
           <tr>
             <td><span class="vehicle-icon vi-motorbike"></span>Xe máy xăng</td>
-            <td class="center mono">0.072</td>
+            <td class="center mono">0.1137</td>
             <td class="center mono">0.085</td>
             <td class="center mono">0.070</td>
             <td class="center mono">0.080</td>
@@ -766,7 +766,7 @@
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-car"></span>Ô tô nhỏ xăng</td>
-            <td class="center mono">0.120</td>
+            <td class="center mono">0.1431</td>
             <td class="center mono">0.140</td>
             <td class="center mono">0.160</td>
             <td class="center mono">0.130</td>
@@ -775,7 +775,7 @@
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-car"></span>Ô tô trung bình xăng</td>
-            <td class="center mono">0.150</td>
+            <td class="center mono">0.1747</td>
             <td class="center mono">0.160</td>
             <td class="center mono">0.170</td>
             <td class="center mono">0.150</td>
@@ -784,7 +784,7 @@
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-car"></span>Ô tô lớn xăng</td>
-            <td class="center mono">0.210</td>
+            <td class="center mono">0.2683</td>
             <td class="center mono">0.180</td>
             <td class="center mono">0.200</td>
             <td class="center mono">0.180</td>
@@ -793,7 +793,7 @@
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-car"></span>Ô tô diesel</td>
-            <td class="center mono">0.140</td>
+            <td class="center mono">0.1730</td>
             <td class="center mono">0.150</td>
             <td class="center mono">0.150</td>
             <td class="center mono">0.150</td>
@@ -802,7 +802,7 @@
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-car"></span>Ô tô hybrid</td>
-            <td class="center mono">0.100</td>
+            <td class="center mono">0.1283</td>
             <td class="center mono">0.110</td>
             <td class="center mono">0.120</td>
             <td class="center mono">—</td>
@@ -820,7 +820,7 @@
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-bus"></span>Xe buýt diesel</td>
-            <td class="center mono">0.089</td>
+            <td class="center mono">0.1253</td>
             <td class="center mono">0.095</td>
             <td class="center mono">0.080</td>
             <td class="center mono">0.090</td>
@@ -847,7 +847,7 @@
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-train"></span>MRT / Tàu điện</td>
-            <td class="center mono">0.006</td>
+            <td class="center mono">0.0286</td>
             <td class="center mono">0.040</td>
             <td class="center mono">0.040</td>
             <td class="center mono">0.050</td>
@@ -856,7 +856,7 @@
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-train"></span>Tàu hoả diesel</td>
-            <td class="center mono">0.120</td>
+            <td class="center mono">0.0355</td>
             <td class="center mono">0.100</td>
             <td class="center mono">0.090</td>
             <td class="center mono">0.100</td>
@@ -875,16 +875,21 @@
         </tbody>
       </table>
     </div>
-    <p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">* Xe buýt FJCU 0.094: Có thể đã là per-passenger (DEFRA per-pax = 0.089, tương đương). Dashes (—) = không có dữ liệu trong nguồn đó.</p>
+    <p style="font-size:12px; color:var(--text-secondary); margin-top:8px;">* DEFRA 2025: Xe máy/ô tô theo <strong>veh-km</strong>, xe buýt/tàu/taxi theo <strong>pax-km</strong>. Xe buýt FJCU 0.094: Có thể đã là per-passenger (DEFRA 2025 verified: 0.1253). Dashes (—) = không có dữ liệu trong nguồn đó. Giá trị đã được cập nhật 2026-05-12 — xác minh từ <code>defra_2025_condensed_set.xlsx</code>.</p>
 
     <h3>Phân tích theo phương tiện</h3>
     <ul>
-      <li><strong>Xe máy xăng:</strong> DEFRA 0.072 là chuẩn quốc tế phổ biến nhất. ICCT Asia đưa ra 0.085–0.11 cho VN/SEA do fleet già hơn, nhiều xe 2-stroke. Giá trị FJCU 0.050 thấp bất thường — khuyến nghị dùng <strong>0.072</strong> (DEFRA) hoặc <strong>0.080</strong> (ADB SEA) cho Vietnam.</li>
-      <li><strong>Ô tô các loại:</strong> FJCU dùng chung 0.115 cho tất cả ô tô — quá đơn giản. Khuyến nghị tách riêng: nhỏ (0.120), trung (0.150), lớn (0.210), diesel (0.140), hybrid (0.100).</li>
-      <li><strong>Xe buýt:</strong> Tất cả nguồn đều xác nhận ~0.08–0.12 per-passenger. FJCU 0.094 có thể đã là per-passenger — phù hợp.</li>
+      <li><strong>Xe máy xăng:</strong> DEFRA 2025 (verified từ file): avg <strong>0.1137</strong> kg/veh-km. Tách theo loại: Small 0.083, Medium 0.101, Large 0.133. ICCT Asia: 0.085–0.11 cho VN/SEA. Giá trị FJCU 0.050 thấp bất thường — khuyến nghị dùng <strong>0.1137</strong> (DEFRA 2025) hoặc <strong>0.080</strong> (ICCT/ADB SEA) cho Vietnam context. <em>Lưu ý: giá trị cũ 0.072 trong research này KHÔNG khớp với DEFRA 2025 thực tế (đã được xác minh 2026-05-12).</em></li>
+      <li><strong>Ô tô các loại:</strong> DEFRA 2025 (verified): Small 0.1431, Medium 0.1747, Large 0.2683, Diesel avg 0.1730, Hybrid 0.1283. FJCU dùng chung 0.115 cho tất cả ô tô — thấp hơn thực tế ~33%. Khuyến nghị tách riêng theo loại xe.</li>
+      <li><strong>Xe buýt:</strong> DEFRA 2025 (verified): Local bus <strong>0.1253</strong> pax-km. Giá trị cũ 0.089 trong research là từ DEFRA năm cũ hoặc FJCU.</li>
       <li><strong>Xe điện:</strong> TTW = 0.000 theo định nghĩa. Không có trong FJCU — cần bổ sung.</li>
-      <li><strong>MRT/Tàu điện:</strong> FJCU 0.023 cao hơn DEFRA (0.006). Giá trị DEFRA phản ánh hiệu quả của metro hiện đại; HCM Metro Line 1 dự kiến sẽ có hệ số tương tự.</li>
+      <li><strong>MRT/Tàu điện:</strong> DEFRA 2025 (verified): Light rail <strong>0.0286</strong>, National rail <strong>0.0355</strong> pax-km. Giá trị cũ 0.006 rất thấp — FJCU/ITRI có thể phản ánh riêng HCM Metro. <em>Giá trị DEFRA 2025 0.0286 được xác nhận từ flat format file đã tải.</em></li>
+      <li><strong>Tàu hoả diesel:</strong> GHG Protocol: 0.120 pax-km. DEFRA 2025 không có hệ số riêng cho diesel train (chỉ có electric rail).</li>
     </ul>
+    <div class="callout warning">
+      <div class="callout-title">⚠️ Lưu ý quan trọng (2026-05-12)</div>
+      <p style="font-size:13.5px; margin:0;">Các giá trị DEFRA 2025 trong bảng trên đã được <strong>xác minh trực tiếp từ file <code>defra_2025_condensed_set.xlsx</code></strong> trong thư mục <code>dataset/</code>. Nhiều giá trị trong bảng gốc (trước 2026-05-12) không khớp với file DEFRA 2025 thực tế — cụ thể: motorbike 0.072 (thực: 0.1137), car 0.115 (thực: 0.143–0.268), bus 0.089 (thực: 0.125), MRT 0.006 (thực: 0.029). Đơn vị: <strong>veh-km</strong> cho xe máy/ô tô, <strong>pax-km</strong> cho xe buýt/tàu/taxi.</p>
+    </div>
   </div>
 
   <!-- SECTION 5: Dataset khuyến nghị -->
@@ -909,9 +914,9 @@
           <tr>
             <td><span class="vehicle-icon vi-motorbike"></span></td>
             <td>Xe máy xăng</td>
-            <td class="highlight-cell">0.072</td>
-            <td><span class="source-tag">DEFRA 2025</span></td>
-            <td>Trung bình fleet VN (125–150cc). ICCT Asia: 0.085; dùng 0.072 là conservative</td>
+            <td class="highlight-cell">0.1137</td>
+            <td><span class="source-tag">DEFRA 2025 ✓</span></td>
+            <td>DEFRA 2025 avg motorbike (veh-km). Tách: Small 0.083, Medium 0.101, Large 0.133. ICCT Asia: 0.085; dùng 0.1137 là conservative.</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-ev"></span></td>
@@ -924,37 +929,37 @@
           <tr>
             <td><span class="vehicle-icon vi-car"></span></td>
             <td>Ô tô nhỏ xăng (&lt;1.5L) <span class="status-new">MỚI</span></td>
-            <td class="highlight-cell">0.120</td>
-            <td><span class="source-tag">DEFRA 2025</span></td>
-            <td>City car, xe du lịch cỡ nhỏ. Phổ biến tại HCM (Vios, City, Accent)</td>
+            <td class="highlight-cell">0.1431</td>
+            <td><span class="source-tag">DEFRA 2025 ✓</span></td>
+            <td>DEFRA 2025 Small car, petrol (veh-km). City car, xe du lịch cỡ nhỏ. Phổ biến tại HCM (Vios, City, Accent)</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-car"></span></td>
             <td>Ô tô trung bình xăng (1.5–2.5L) <span class="status-new">MỚI</span></td>
-            <td class="highlight-cell">0.150</td>
-            <td><span class="source-tag">DEFRA 2025</span></td>
-            <td>Sedan/MUV cỡ trung. Camry, Accord, Mazda 6</td>
+            <td class="highlight-cell">0.1747</td>
+            <td><span class="source-tag">DEFRA 2025 ✓</span></td>
+            <td>DEFRA 2025 Medium car, petrol (veh-km). Sedan/MUV cỡ trung. Camry, Accord, Mazda 6</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-car"></span></td>
             <td>Ô tô lớn xăng (&gt;2.5L) <span class="status-new">MỚI</span></td>
-            <td class="highlight-cell">0.210</td>
-            <td><span class="source-tag">DEFRA 2025</span></td>
-            <td>SUV, xe sang. BMW, Mercedes, Lexus phân khúc cao</td>
+            <td class="highlight-cell">0.2683</td>
+            <td><span class="source-tag">DEFRA 2025 ✓</span></td>
+            <td>DEFRA 2025 Large car, petrol (veh-km). SUV, xe sang. BMW, Mercedes, Lexus phân khúc cao</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-car"></span></td>
             <td>Ô tô diesel</td>
-            <td class="highlight-cell">0.140</td>
-            <td><span class="source-tag">DEFRA 2025</span></td>
-            <td>Fleet diesel trung bình VN. Hiệu quả hơn xăng về CO2 nhưng cao hơn về ô nhiễm</td>
+            <td class="highlight-cell">0.1730</td>
+            <td><span class="source-tag">DEFRA 2025 ✓</span></td>
+            <td>DEFRA 2025 Average car, diesel (veh-km). Fleet diesel trung bình VN. Hiệu quả hơn xăng về CO2 nhưng cao hơn về ô nhiễm</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-car"></span></td>
             <td>Ô tô hybrid <span class="status-new">MỚI</span></td>
-            <td class="highlight-cell">0.100</td>
-            <td><span class="source-tag">DEFRA 2025</span></td>
-            <td>Camry Hybrid, Prius, HR-V Hybrid. Ngày càng phổ biến tại VN</td>
+            <td class="highlight-cell">0.1283</td>
+            <td><span class="source-tag">DEFRA 2025 ✓</span></td>
+            <td>DEFRA 2025 Average car, hybrid (veh-km). Camry Hybrid, Prius, HR-V Hybrid. Ngày càng phổ biến tại VN</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-ev"></span></td>
@@ -967,9 +972,9 @@
           <tr>
             <td><span class="vehicle-icon vi-bus"></span></td>
             <td>Xe buýt diesel (city)</td>
-            <td class="highlight-cell">0.089</td>
-            <td><span class="source-tag">DEFRA 2025</span></td>
-            <td>Per-passenger. FJCU 0.094 ≈ DEFRA 0.089 — xác nhận đồng thuận quốc tế. Avg occupancy ~30</td>
+            <td class="highlight-cell">0.1253</td>
+            <td><span class="source-tag">DEFRA 2025 ✓</span></td>
+            <td>DEFRA 2025 Local bus (not London), per passenger-km. Avg occupancy ~30. Giá trị cũ 0.089 trong research không phải từ DEFRA 2025.</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-ev"></span></td>
@@ -982,24 +987,24 @@
           <tr>
             <td><span class="vehicle-icon vi-other"></span></td>
             <td>Taxi / Grab <span class="status-new">MỚI</span></td>
-            <td class="highlight-cell">0.150</td>
-            <td><span class="source-tag">DEFRA 2025</span></td>
-            <td>Per-passenger (avg 1.5 pax). DEFRA ghi nhận riêng cho taxi vì occupancy thấp hơn xe buýt</td>
+            <td class="highlight-cell">0.1486</td>
+            <td><span class="source-tag">DEFRA 2025 ✓</span></td>
+            <td>DEFRA 2025 Regular taxi, per passenger-km. Avg occupancy thấp hơn xe buýt. Giá trị 0.150 trong research gốc ≈ DEFRA 0.149 — khớp tốt.</td>
           </tr>
           <!-- Tàu -->
           <tr>
             <td><span class="vehicle-icon vi-train"></span></td>
             <td>MRT / Tàu điện metro</td>
-            <td class="highlight-cell">0.006</td>
-            <td><span class="source-tag">DEFRA 2025</span></td>
-            <td>HCM Metro Line 1 (Bến Thành – Suối Tiên). DEFRA per-pax rất thấp. FJCU 0.023 = avg train</td>
+            <td class="highlight-cell">0.0286</td>
+            <td><span class="source-tag">DEFRA 2025 ✓</span></td>
+            <td>DEFRA 2025 Light rail and tram, per passenger-km. HCM Metro Line 1. Giá trị cũ 0.006 trong research KHÔNG phải từ DEFRA 2025 (DEFRA 2025 = 0.0286).</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-train"></span></td>
             <td>Tàu hoả diesel <span class="status-new">MỚI</span></td>
             <td class="highlight-cell">0.120</td>
-            <td><span class="source-tag">DEFRA 2025</span></td>
-            <td>Tàu hỏa khu vực, đường sắt Bắc Nam. GHG Protocol: 0.100 — dùng 0.120 là conservative</td>
+            <td><span class="source-tag">GHG Protocol</span></td>
+            <td>Tàu hỏa khu vực, đường sắt Bắc Nam. GHG Protocol: 0.120 pax-km. DEFRA 2025 không có hệ số riêng cho diesel train.</td>
           </tr>
           <!-- Đi bộ -->
           <tr>
@@ -1018,7 +1023,7 @@
       <li><strong>5 loại phương tiện mới:</strong> Xe máy điện, ô tô nhỏ/trung/lớn (tách riêng), ô tô hybrid, ô tô điện, xe buýt điện, taxi/Grab, tàu hoả diesel</li>
       <li><strong>Tách ô tô theo dung tích:</strong> Thay vì dùng chung 0.115, user chọn đúng loại xe → tính toán chính xác hơn</li>
       <li><strong>Xe điện: TTW = 0:</strong> Phản ánh đúng — xe điện không phát thải ống xả. Nếu user muốn tính cả điện, có thể bổ sung ở V2 (grid emission ~0.5 kg/kWh cho VN)</li>
-      <li><strong>Xe buýt: per-passenger:</strong> Khuyến khích dùng phương tiện công cộng — 1 người đi xe buýt chỉ phát thải 0.089 kg/km, rất thấp so với xe máy 0.072 (gần bằng) hoặc ô tô 0.150 (cao gấp đôi)</li>
+      <li><strong>Xe buýt: per-passenger:</strong> Khuyến khích dùng phương tiện công cộng — 1 người đi xe buýt phát thải 0.1253 kg/km (DEFRA 2025 verified), thấp hơn ô tô nhỏ 0.1431 và xe máy 0.1137 (per veh-km).</li>
       <li><strong>Tất cả đều tuân thủ ISO 14064-1:2018 và ISO 14067:2018</strong></li>
     </ul>
 
@@ -1027,18 +1032,18 @@
 <span style="color:#7cb899;">// emissionFactors.ts — AirGuard MVP</span>
 
 <span style="color:#82aaff;">export const</span> EMISSION_FACTORS_TTW = {
-  <span style="color:#a8d8b9;">motorbike</span>:     { ef: <span style="color:#ffd700;">0.072</span>, label: <span style="color:#c3e88d;">"Xe máy xăng"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🛵"</span>, color: <span style="color:#c3e88d;">"#f59e0b"</span> },
-  <span style="color:#a8d8b9;">motorbike_ev</span>: { ef: <span style="color:#ffd700;">0.000</span>, label: <span style="color:#c3e88d;">"Xe máy điện"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"⚡"</span>, color: <span style="color:#c3e88d;">"#22c55e"</span>, isEV: <span style="color:#c3e88d;">true</span> },
-  <span style="color:#a8d8b9;">car_small</span>:    { ef: <span style="color:#ffd700;">0.120</span>, label: <span style="color:#c3e88d;">"Ô tô nhỏ (&lt;1.5L)"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚗"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
-  <span style="color:#a8d8b9;">car_medium</span>:   { ef: <span style="color:#ffd700;">0.150</span>, label: <span style="color:#c3e88d;">"Ô tô trung (1.5–2.5L)"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚙"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
-  <span style="color:#a8d8b9;">car_large</span>:    { ef: <span style="color:#ffd700;">0.210</span>, label: <span style="color:#c3e88d;">"Ô tô lớn (&gt;2.5L)"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚘"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
-  <span style="color:#a8d8b9;">car_diesel</span>:   { ef: <span style="color:#ffd700;">0.140</span>, label: <span style="color:#c3e88d;">"Ô tô diesel"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚕"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
-  <span style="color:#a8d8b9;">car_hybrid</span>:   { ef: <span style="color:#ffd700;">0.100</span>, label: <span style="color:#c3e88d;">"Ô tô hybrid"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚙"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
-  <span style="color:#a8d8b9;">car_ev</span>:       { ef: <span style="color:#ffd700;">0.000</span>, label: <span style="color:#c3e88d;">"Ô tô điện"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚘"</span>, color: <span style="color:#c3e88d;">"#22c55e"</span>, isEV: <span style="color:#c3e88d;">true</span> },
-  <span style="color:#a8d8b9;">bus_diesel</span>:   { ef: <span style="color:#ffd700;">0.089</span>, label: <span style="color:#c3e88d;">"Xe buýt diesel"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚌"</span>, color: <span style="color:#c3e88d;">"#d97706"</span> },
+  <span style="color:#a8d8b9;">motorbike</span>:     { ef: <span style="color:#ffd700;">0.1137</span>, label: <span style="color:#c3e88d;">"Xe máy xăng"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"🛵"</span>, color: <span style="color:#c3e88d;">"#f59e0b"</span> },
+  <span style="color:#a8d8b9;">motorbike_ev</span>: { ef: <span style="color:#ffd700;">0.000</span>, label: <span style="color:#c3e88d;">"Xe máy điện"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"⚡"</span>, color: <span style="color:#c3e88d;">"#22c55e"</span>, isEV: <span style="color:#c3e88d;">true</span> },
+  <span style="color:#a8d8b9;">car_small</span>:    { ef: <span style="color:#ffd700;">0.1431</span>, label: <span style="color:#c3e88d;">"Ô tô nhỏ (&lt;1.5L)"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"🚗"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
+  <span style="color:#a8d8b9;">car_medium</span>:   { ef: <span style="color:#ffd700;">0.1747</span>, label: <span style="color:#c3e88d;">"Ô tô trung (1.5–2.5L)"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"🚙"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
+  <span style="color:#a8d8b9;">car_large</span>:    { ef: <span style="color:#ffd700;">0.2683</span>, label: <span style="color:#c3e88d;">"Ô tô lớn (&gt;2.5L)"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"🚘"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
+  <span style="color:#a8d8b9;">car_diesel</span>:   { ef: <span style="color:#ffd700;">0.1730</span>, label: <span style="color:#c3e88d;">"Ô tô diesel"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"🚕"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
+  <span style="color:#a8d8b9;">car_hybrid</span>:   { ef: <span style="color:#ffd700;">0.1283</span>, label: <span style="color:#c3e88d;">"Ô tô hybrid"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"🚙"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
+  <span style="color:#a8d8b9;">car_ev</span>:       { ef: <span style="color:#ffd700;">0.000</span>, label: <span style="color:#c3e88d;">"Ô tô điện"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"🚘"</span>, color: <span style="color:#c3e88d;">"#22c55e"</span>, isEV: <span style="color:#c3e88d;">true</span> },
+  <span style="color:#a8d8b9;">bus_diesel</span>:   { ef: <span style="color:#ffd700;">0.1253</span>, label: <span style="color:#c3e88d;">"Xe buýt diesel"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚌"</span>, color: <span style="color:#c3e88d;">"#d97706"</span> },
   <span style="color:#a8d8b9;">bus_ev</span>:       { ef: <span style="color:#ffd700;">0.000</span>, label: <span style="color:#c3e88d;">"Xe buýt điện"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚌"</span>, color: <span style="color:#c3e88d;">"#22c55e"</span>, isEV: <span style="color:#c3e88d;">true</span> },
-  <span style="color:#a8d8b9;">taxi</span>:         { ef: <span style="color:#ffd700;">0.150</span>, label: <span style="color:#c3e88d;">"Taxi / Grab"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚖"</span>, color: <span style="color:#c3e88d;">"#6b7280"</span> },
-  <span style="color:#a8d8b9;">mrt</span>:          { ef: <span style="color:#ffd700;">0.006</span>, label: <span style="color:#c3e88d;">"MRT / Tàu điện"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚇"</span>, color: <span style="color:#c3e88d;">"#7c3aed"</span> },
+  <span style="color:#a8d8b9;">taxi</span>:         { ef: <span style="color:#ffd700;">0.1486</span>, label: <span style="color:#c3e88d;">"Taxi / Grab"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚖"</span>, color: <span style="color:#c3e88d;">"#6b7280"</span> },
+  <span style="color:#a8d8b9;">mrt</span>:          { ef: <span style="color:#ffd700;">0.0286</span>, label: <span style="color:#c3e88d;">"MRT / Tàu điện"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚇"</span>, color: <span style="color:#c3e88d;">"#7c3aed"</span> },
   <span style="color:#a8d8b9;">train_diesel</span>: { ef: <span style="color:#ffd700;">0.120</span>, label: <span style="color:#c3e88d;">"Tàu hoả diesel"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚂"</span>, color: <span style="color:#c3e88d;">"#7c3aed"</span> },
   <span style="color:#a8d8b9;">walk</span>:         { ef: <span style="color:#ffd700;">0.000</span>, label: <span style="color:#c3e88d;">"Đi bộ"</span>, unit: <span style="color:#c3e88d;">"kg CO2/pax-km"</span>, icon: <span style="color:#c3e88d;">"🚶"</span>, color: <span style="color:#c3e88d;">"#6b7280"</span> },
 } <span style="color:#7cb899;">as const</span>
@@ -1821,7 +1826,7 @@
     <ol class="ref-list">
       <li>
         <span class="ref-num">1</span>
-        <div class="ref-text">Department for Environment, Food and Rural Affairs. (2025). <em>Greenhouse gas reporting: Conversion factors 2025</em>. UK Government. https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2025</div>
+        <div class="ref-text">Department for Environment, Food and Rural Affairs. (2025). <em>Greenhouse gas reporting: Conversion factors 2025</em>. UK Government. https://www.gov.uk/government/publications/greenhouse-gas-reporting-conversion-factors-2025 — Downloaded and verified: <code>defra_2025_condensed_set.xlsx</code> in <code>dataset/</code>.</div>
       </li>
       <li>
         <span class="ref-num">2</span>
@@ -1837,7 +1842,7 @@
       </li>
       <li>
         <span class="ref-num">5</span>
-        <div class="ref-text">Intergovernmental Panel on Climate Change. (2006). <em>2006 IPCC guidelines for national greenhouse gas inventories: Volume 2 — Energy, Chapter 3: Mobile combustion</em>. Geneva: IPCC.</div>
+        <div class="ref-text">Intergovernmental Panel on Climate Change. (2006). <em>2006 IPCC guidelines for national greenhouse gas inventories: Volume 2 — Energy, Chapter 3: Mobile combustion</em>. Geneva: IPCC. — Downloaded: <code>ipcc_2006gl_vol2_ch3_mobile_combustion.pdf</code> in <code>dataset/</code>.</div>
       </li>
       <li>
         <span class="ref-num">6</span>
@@ -1911,18 +1916,25 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Motorcycle</td><td>Petrol average</td><td>0.072</td><td>UK fleet average 125-500cc</td></tr>
-            <tr><td>Car</td><td>Small petrol (&lt;1.5L)</td><td>0.120</td><td></td></tr>
-            <tr><td>Car</td><td>Medium petrol (1.5-2.5L)</td><td>0.150</td><td></td></tr>
-            <tr><td>Car</td><td>Large petrol (&gt;2.5L)</td><td>0.210</td><td></td></tr>
-            <tr><td>Car</td><td>Diesel small</td><td>0.110</td><td></td></tr>
-            <tr><td>Car</td><td>Diesel medium/large</td><td>0.140–0.180</td><td></td></tr>
-            <tr><td>Car</td><td>Hybrid</td><td>0.100</td><td></td></tr>
-            <tr><td>Car</td><td>Electric (TTW)</td><td>0.000</td><td></td></tr>
-            <tr><td>Bus</td><td>City diesel</td><td>0.089</td><td>Per passenger avg</td></tr>
-            <tr><td>Taxi</td><td>Average petrol/hybrid</td><td>0.150</td><td></td></tr>
-            <tr><td>Rail</td><td>Electric (per pax)</td><td>0.006</td><td>Light rail/metro</td></tr>
-            <tr><td>Rail</td><td>Diesel regional</td><td>0.120</td><td></td></tr>
+            <tr><td>Motorcycle</td><td>Petrol average</td><td>0.1137</td><td>UK fleet average 125-500cc (DEFRA 2025 verified)</td></tr>
+            <tr><td>Motorcycle</td><td>Petrol small (&lt;125cc)</td><td>0.0832</td><td></td></tr>
+            <tr><td>Motorcycle</td><td>Petrol medium (125-500cc)</td><td>0.1011</td><td></td></tr>
+            <tr><td>Motorcycle</td><td>Petrol large (&gt;500cc)</td><td>0.1325</td><td></td></tr>
+            <tr><td>Car</td><td>Small petrol (&lt;1.5L)</td><td>0.1431</td><td>DEFRA 2025 Small car, petrol</td></tr>
+            <tr><td>Car</td><td>Medium petrol (1.5-2.5L)</td><td>0.1747</td><td>DEFRA 2025 Medium car, petrol</td></tr>
+            <tr><td>Car</td><td>Large petrol (&gt;2.5L)</td><td>0.2683</td><td>DEFRA 2025 Large car, petrol</td></tr>
+            <tr><td>Car</td><td>Diesel small/avg</td><td>0.1434–0.1730</td><td>DEFRA 2025 Small-Diesel: 0.1434, Avg-Diesel: 0.1730</td></tr>
+            <tr><td>Car</td><td>Hybrid</td><td>0.1283</td><td>DEFRA 2025 Average car, hybrid</td></tr>
+            <tr><td>Car</td><td>Electric (TTW)</td><td>0.000</td><td>DEFRA 2025 Battery EV</td></tr>
+            <tr><td>Bus</td><td>City diesel (not London)</td><td>0.1253</td><td>Per passenger-km (DEFRA 2025 verified)</td></tr>
+            <tr><td>Bus</td><td>Average local bus</td><td>0.1039</td><td>Per passenger-km</td></tr>
+            <tr><td>Bus</td><td>London bus</td><td>0.0688</td><td>Per passenger-km</td></tr>
+            <tr><td>Bus</td><td>Coach (long distance)</td><td>0.0278</td><td>Per passenger-km</td></tr>
+            <tr><td>Taxi</td><td>Regular taxi</td><td>0.1486</td><td>Per passenger-km (DEFRA 2025 verified)</td></tr>
+            <tr><td>Taxi</td><td>Black cab</td><td>0.2040</td><td>Per passenger-km</td></tr>
+            <tr><td>Rail</td><td>Light rail / tram</td><td>0.0286</td><td>Per passenger-km (DEFRA 2025 verified)</td></tr>
+            <tr><td>Rail</td><td>National rail (electric)</td><td>0.0355</td><td>Per passenger-km</td></tr>
+            <tr><td>Rail</td><td>Diesel regional</td><td>0.120</td><td>Per passenger-km (GHG Protocol)</td></tr>
           </tbody>
         </table>
       </div>
@@ -1941,13 +1953,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Vietnam</td><td>80–100</td><td>140–170</td><td>90–120</td></tr>
-            <tr><td>Thailand</td><td>85–105</td><td>150–180</td><td>80–110</td></tr>
-            <tr><td>Indonesia</td><td>90–110</td><td>150–180</td><td>100–130</td></tr>
-            <tr><td>India</td><td>75–95</td><td>130–160</td><td>70–100</td></tr>
-            <tr><td>China</td><td>70–90</td><td>130–165</td><td>60–90</td></tr>
-            <tr><td>EU average</td><td>~90</td><td>~173</td><td>~80</td></tr>
-            <tr><td>US average</td><td>~200*</td><td>~256</td><td>~250</td></tr>
+            <tr><td>Vietnam</td><td>80–100</td><td>140–170</td><td>90–120</td><td>DEFRA 2025 verified: motorbike avg 0.1137 (113.7 g), car diesel 0.173 (173 g), bus 0.1253 (125.3 g)</td></tr>
+            <tr><td>Thailand</td><td>85–105</td><td>150–180</td><td>80–110</td><td></td></tr>
+            <tr><td>Indonesia</td><td>90–110</td><td>150–180</td><td>100–130</td><td></td></tr>
+            <tr><td>India</td><td>75–95</td><td>130–160</td><td>70–100</td><td></td></tr>
+            <tr><td>China</td><td>70–90</td><td>130–165</td><td>60–90</td><td></td></tr>
+            <tr><td>EU average</td><td>~90</td><td>~173</td><td>~80</td><td></td></tr>
+            <tr><td>US average</td><td>~200*</td><td>~256</td><td>~250</td><td></td></tr>
           </tbody>
         </table>
       </div>
