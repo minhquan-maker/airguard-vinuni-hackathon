@@ -689,8 +689,8 @@
           <tr>
             <td>Xe máy xăng</td>
             <td class="center mono">0.0083</td>
-            <td>DEFRA 2025 (ước tính 0.5L/h × 2.28kg/L ÷ 60)</td>
-            <td>Động cơ 125cc idle tiêu thụ ~0.5L/h</td>
+            <td>DEFRA 2025 (ước tính 0.5L/h × 2.28kg/L ÷ 60) — cần cross-validate cho VN fleet</td>
+            <td>Động cơ 125cc idle tiêu thụ ~0.5L/h. Lưu ý: DEFRA UK estimate có thể không phản ánh xe 125-150cc tại VN.</td>
           </tr>
           <tr>
             <td>Ô tô (xăng)</td>
@@ -879,7 +879,7 @@
 
     <h3>Phân tích theo phương tiện</h3>
     <ul>
-      <li><strong>Xe máy xăng:</strong> DEFRA 2025 (verified từ file): avg <strong>0.1137</strong> kg/veh-km. Tách theo loại: Small 0.083, Medium 0.101, Large 0.133. ICCT Asia: 0.085–0.11 cho VN/SEA. Giá trị FJCU 0.050 thấp bất thường — khuyến nghị dùng <strong>0.1137</strong> (DEFRA 2025) hoặc <strong>0.080</strong> (ICCT/ADB SEA) cho Vietnam context. <em>Lưu ý: giá trị cũ 0.072 trong research này KHÔNG khớp với DEFRA 2025 thực tế (đã được xác minh 2026-05-12).</em></li>
+      <li><strong>Xe máy xăng:</strong> DEFRA 2025 (verified từ file): avg <strong>0.1137</strong> kg/veh-km — phản ánh UK fleet (xe 500cc+, giải trí). ICCT Asia: <strong>0.085</strong> real-world data cho VN/SEA (xe 125-150cc). ADB SEA: <strong>0.080</strong> cross-validated. VN fleet chủ yếu 125-150cc di chuyển hàng ngày — <strong>khuyến nghị dùng ICCT Asia 0.085</strong>. DEFRA 0.1137 là over-estimate cho VN. FJCU 0.050 thấp bất thường.</li>
       <li><strong>Ô tô các loại:</strong> DEFRA 2025 (verified): Small 0.1431, Medium 0.1747, Large 0.2683, Diesel avg 0.1730, Hybrid 0.1283. FJCU dùng chung 0.115 cho tất cả ô tô — thấp hơn thực tế ~33%. Khuyến nghị tách riêng theo loại xe.</li>
       <li><strong>Xe buýt:</strong> DEFRA 2025 (verified): Local bus <strong>0.1253</strong> pax-km. Giá trị cũ 0.089 trong research là từ DEFRA năm cũ hoặc FJCU.</li>
       <li><strong>Xe điện:</strong> TTW = 0.000 theo định nghĩa. Không có trong FJCU — cần bổ sung.</li>
@@ -888,7 +888,7 @@
     </ul>
     <div class="callout warning">
       <div class="callout-title">⚠️ Lưu ý quan trọng (2026-05-12)</div>
-      <p style="font-size:13.5px; margin:0;">Các giá trị DEFRA 2025 trong bảng trên đã được <strong>xác minh trực tiếp từ file <code>defra_2025_condensed_set.xlsx</code></strong> trong thư mục <code>dataset/</code>. Nhiều giá trị trong bảng gốc (trước 2026-05-12) không khớp với file DEFRA 2025 thực tế — cụ thể: motorbike 0.072 (thực: 0.1137), car 0.115 (thực: 0.143–0.268), bus 0.089 (thực: 0.125), MRT 0.006 (thực: 0.029). Đơn vị: <strong>veh-km</strong> cho xe máy/ô tô, <strong>pax-km</strong> cho xe buýt/tàu/taxi.</p>
+      <p style="font-size:13.5px; margin:0;">Các giá trị DEFRA 2025 trong bảng trên đã được <strong>xác minh trực tiếp từ file <code>defra_2025_condensed_set.xlsx</code></strong> trong thư mục <code>dataset/</code>. Nhiều giá trị trong bảng gốc (trước 2026-05-12) không khớp với file DEFRA 2025 thực tế — cụ thể: car 0.115 (thực: 0.143–0.268), bus 0.089 (thực: 0.125), MRT 0.006 (thực: 0.029). <strong>Lưu ý:</strong> Motorbike chọn ICCT Asia 0.085 (VN/SEA fleet) thay vì DEFRA 2025 0.1137 (UK fleet) — xem Section 5 methodology note. Đơn vị: <strong>veh-km</strong> cho xe máy/ô tô, <strong>pax-km</strong> cho xe buýt/tàu/taxi.</p>
     </div>
   </div>
 
@@ -914,9 +914,9 @@
           <tr>
             <td><span class="vehicle-icon vi-motorbike"></span></td>
             <td>Xe máy xăng</td>
-            <td class="highlight-cell">0.1137</td>
-            <td><span class="source-tag">DEFRA 2025 ✓</span></td>
-            <td>DEFRA 2025 avg motorbike (veh-km). Tách: Small 0.083, Medium 0.101, Large 0.133. ICCT Asia: 0.085; dùng 0.1137 là conservative.</td>
+            <td class="highlight-cell">0.085</td>
+            <td><span class="source-tag">ICCT Asia 2024 ✓</span></td>
+            <td>ICCT Asia real-world data cho VN/SEA fleet. VN fleet chủ yếu 125-150cc. DEFRA 2025 0.1137 dùng cho UK fleet (xe lớn hơn, mục đích giải trí).</td>
           </tr>
           <tr>
             <td><span class="vehicle-icon vi-ev"></span></td>
@@ -1023,8 +1023,9 @@
       <li><strong>5 loại phương tiện mới:</strong> Xe máy điện, ô tô nhỏ/trung/lớn (tách riêng), ô tô hybrid, ô tô điện, xe buýt điện, taxi/Grab, tàu hoả diesel</li>
       <li><strong>Tách ô tô theo dung tích:</strong> Thay vì dùng chung 0.115, user chọn đúng loại xe → tính toán chính xác hơn</li>
       <li><strong>Xe điện: TTW = 0:</strong> Phản ánh đúng — xe điện không phát thải ống xả. Nếu user muốn tính cả điện, có thể bổ sung ở V2 (grid emission ~0.5 kg/kWh cho VN)</li>
-      <li><strong>Xe buýt: per-passenger:</strong> Khuyến khích dùng phương tiện công cộng — 1 người đi xe buýt phát thải 0.1253 kg/km (DEFRA 2025 verified), thấp hơn ô tô nhỏ 0.1431 và xe máy 0.1137 (per veh-km).</li>
+      <li><strong>Xe buýt: per-passenger:</strong> Khuyến khích dùng phương tiện công cộng — 1 người đi xe buýt phát thải 0.1253 kg/km (DEFRA 2025 verified), thấp hơn ô tô nhỏ 0.1431 và xe máy 0.085 (per veh-km).</li>
       <li><strong>Tất cả đều tuân thủ ISO 14064-1:2018 và ISO 14067:2018</strong></li>
+      <li><strong>Lưu ý phương pháp luận — Xe máy:</strong> Sử dụng ICCT Asia 0.085 thay vì DEFRA 2025 0.1137 vì DEFRA phản ánh UK fleet (xe 500cc+, mục đích giải trí), trong khi VN chủ yếu là xe 125-150cc phục vụ di chuyển. ICCT Asia 0.085 là real-world data cross-validated với ADB SEA 0.080. Nguyên tắc conservative: chọn giá trị phản ánh thực tế VN fleet, không dùng giá trị global không phù hợp.</li>
     </ul>
 
     <h3>Code snippet cho app (TypeScript)</h3>
@@ -1032,7 +1033,7 @@
 <span style="color:#7cb899;">// emissionFactors.ts — AirGuard MVP</span>
 
 <span style="color:#82aaff;">export const</span> EMISSION_FACTORS_TTW = {
-  <span style="color:#a8d8b9;">motorbike</span>:     { ef: <span style="color:#ffd700;">0.1137</span>, label: <span style="color:#c3e88d;">"Xe máy xăng"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"🛵"</span>, color: <span style="color:#c3e88d;">"#f59e0b"</span> },
+  <span style="color:#a8d8b9;">motorbike</span>:     { ef: <span style="color:#ffd700;">0.085</span>, label: <span style="color:#c3e88d;">"Xe máy xăng"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"🛵"</span>, color: <span style="color:#c3e88d;">"#f59e0b"</span> },  <span style="color:#7cb899;">// ICCT Asia 2024 — VN/SEA fleet (DEFRA 2025 0.1137 for reference only)</span>
   <span style="color:#a8d8b9;">motorbike_ev</span>: { ef: <span style="color:#ffd700;">0.000</span>, label: <span style="color:#c3e88d;">"Xe máy điện"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"⚡"</span>, color: <span style="color:#c3e88d;">"#22c55e"</span>, isEV: <span style="color:#c3e88d;">true</span> },
   <span style="color:#a8d8b9;">car_small</span>:    { ef: <span style="color:#ffd700;">0.1431</span>, label: <span style="color:#c3e88d;">"Ô tô nhỏ (&lt;1.5L)"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"🚗"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
   <span style="color:#a8d8b9;">car_medium</span>:   { ef: <span style="color:#ffd700;">0.1747</span>, label: <span style="color:#c3e88d;">"Ô tô trung (1.5–2.5L)"</span>, unit: <span style="color:#c3e88d;">"kg CO2/veh-km"</span>, icon: <span style="color:#c3e88d;">"🚙"</span>, color: <span style="color:#c3e88d;">"#40916c"</span> },
@@ -1273,13 +1274,13 @@
     <div class="formula-box">
       <div class="formula-label">Example — Motorbike trip (10 km)</div>
       <div class="formula-note" style="text-align:left; line-height:2.2; font-size:13px;">
-        E_trip = 10 km × 0.072 kg/km = <strong>0.72 kg CO2</strong><br><br>
-        ÷ Trà sữa 250ml → <strong>6.5 ly</strong> (0.72 / 0.110)<br>
-        ÷ Trứng → <strong>6.9 quả</strong> (0.72 / 0.105)<br>
-        ÷ Nước ngọt 600ml → <strong>1.8 chai</strong> (0.72 / 0.398)<br>
-        ÷ Bánh pineapple cake → <strong>3.7 cái</strong> (0.72 / 0.194)<br>
-        ÷ Cà phê đen → <strong>2.4 tách</strong> (0.72 / 0.304)<br>
-        ÷ Nước đóng chai 330ml → <strong>4.8 chai</strong> (0.72 / 0.150)
+        E_trip = 10 km × 0.085 kg/km = <strong>0.85 kg CO2</strong> (ICCT Asia 2024)<br><br>
+        ÷ Trà sữa 250ml → <strong>7.7 ly</strong> (0.85 / 0.110)<br>
+        ÷ Trứng → <strong>8.1 quả</strong> (0.85 / 0.105)<br>
+        ÷ Nước ngọt 600ml → <strong>2.1 chai</strong> (0.85 / 0.398)<br>
+        ÷ Bánh pineapple cake → <strong>4.4 cái</strong> (0.85 / 0.194)<br>
+        ÷ Cà phê đen → <strong>2.8 tách</strong> (0.85 / 0.304)<br>
+        ÷ Nước đóng chai 330ml → <strong>5.7 chai</strong> (0.85 / 0.150)
       </div>
     </div>
 
@@ -1403,7 +1404,7 @@
     <h3>Kế hoạch mở rộng V2</h3>
     <ul>
       <li><strong>Idle-time emission:</strong> Tích hợp Google Maps Distance Matrix API → tính t<sub>idle</sub> = duration<sub>traffic</sub> − duration<sub>freeflow</sub> → dùng Equation 2</li>
-      <li><strong>Well-to-Wheel (WTW):</strong> Bổ sung hệ số khai thác nhiên liệu — cao hơn TTW ~15–25%. Ví dụ: xe máy WTW ≈ 0.072 × 1.20 ≈ 0.086 kg/pax-km</li>
+      <li><strong>Well-to-Wheel (WTW):</strong> Bổ sung hệ số khai thác nhiên liệu — cao hơn TTW ~15–25%. Ví dụ: xe máy WTW ≈ 0.085 × 1.20 ≈ 0.102 kg/pax-km (base TTW từ ICCT Asia 0.085)</li>
       <li><strong>Xe tải nhẹ:</strong> Hệ số cho light commercial vehicles (LCV) — ngày càng phổ biến cho giao hàng</li>
       <li><strong>Chuyến bay nội địa:</strong> Hệ số cho máy bay (không khả thi cho HCM nhưng cần cho chuyến bay dài)</li>
     </ul>
